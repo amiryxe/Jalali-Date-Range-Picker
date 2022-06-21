@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jalali Date Range Picker</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+</head>
+
+<body>
+    <input type="text" name="dates" value="01/01/2018 - 01/15/2018" />
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> -->
+    <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script>
+        $(function () {
+            // moment.locale('fa');
+            // moment().format('jYYYY/jM/jD');
+
+            $('input[name="dates"]').daterangepicker({
+                showDropdowns: true,
+                minYear: 1395,
+                startDate: moment().startOf('day'),
+                endDate: moment().startOf('day').add(2, 'day'),
+                locale: {
+                    format: 'jYYYY/jM/jD'
+                }
+            });
+
+
+        })
+    </script>
+</body>
+
+</html>
