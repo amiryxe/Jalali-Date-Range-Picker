@@ -30,22 +30,25 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> -->
-    <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
+    <!-- <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script> -->
+    <script src="./jalali-moment.browser-hossein.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
     <script>
         $(function () {
-            moment.locale('fa-IR')
+            moment.locale('fa')
+
+            console.log(moment().startOf('day').format('YYYY'))
 
             $('input[name="dates"]').daterangepicker({
                 showDropdowns: true,
-                minYear: 2010,
-                maxYear: parseInt(moment().format('YYYY'), 10),
+                minYear: moment().year() - 10,
+                maxYear: moment().year(),
                 startDate: moment().startOf('day'),
                 endDate: moment().startOf('day').add(2, 'day'),
                 locale: {
-                    format: 'jYYYY/jMM/jDD',
+                    format: 'YYYY/MM/DD',
                     direction: 'rtl',
                     "customRangeLabel": "سفارشی",
                     "applyLabel": "اعمال",
