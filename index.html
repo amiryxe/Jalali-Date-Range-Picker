@@ -33,6 +33,15 @@
                 endDate: moment().startOf('day').add(2, 'day'),
                 locale: {
                     format: 'jYYYY/jM/jD'
+                },
+                // custom calendar by jalali date
+                ranges: {
+                    'امروز': [moment(), moment()],
+                    'دیروز': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'هفت روز گذشته': [moment().subtract(6, 'days'), moment()],
+                    'سی روز گذشته': [moment().subtract(29, 'days'), moment()],
+                    'این ماه': [moment().locale('fa').startOf('month').format('jYYYY/jMM/jD'), moment().locale('fa').endOf('month').format('jYYYY/jMM/jD')],
+                    'ماه اخیر': [moment().locale('fa').subtract(1, 'month').startOf('month'), moment().locale('fa').subtract(1, 'month').endOf('month')]
                 }
             });
 
