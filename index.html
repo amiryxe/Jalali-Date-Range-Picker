@@ -9,6 +9,19 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+    <style>
+        .calendar-table {
+            direction: rtl;
+        }
+
+        .daterangepicker td.end-date {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .daterangepicker td.start-date {
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,25 +36,36 @@
 
     <script>
         $(function () {
-            // moment.locale('fa');
-            // moment().format('jYYYY/jM/jD');
-
             $('input[name="dates"]').daterangepicker({
                 showDropdowns: true,
                 minYear: 1395,
                 startDate: moment().startOf('day'),
                 endDate: moment().startOf('day').add(2, 'day'),
                 locale: {
-                    format: 'jYYYY/jM/jD'
+                    format: 'jYYYY/jM/jD',
+                    "customRangeLabel": "سفارشی",
+                    "applyLabel": "اعمال",
+                    "cancelLabel": "انصراف",
+                    "fromLabel": "از",
+                    "toLabel": "تا",
+                    "daysOfWeek": [
+                        "ی",
+                        "د",
+                        "س",
+                        "چ",
+                        "پ",
+                        "ج",
+                        "ش"
+                    ],
+                    "firstDay": 6
                 },
-                // custom calendar by jalali date
                 ranges: {
                     'امروز': [moment(), moment()],
                     'دیروز': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
                     'هفت روز گذشته': [moment().subtract(6, 'days'), moment()],
                     'سی روز گذشته': [moment().subtract(29, 'days'), moment()],
                     'این ماه': [moment().locale('fa').startOf('month').format('jYYYY/jMM/jD'), moment().locale('fa').endOf('month').format('jYYYY/jMM/jD')],
-                    'ماه اخیر': [moment().locale('fa').subtract(1, 'month').startOf('month'), moment().locale('fa').subtract(1, 'month').endOf('month')]
+                    'ماه اخیر': [moment().locale('fa').subtract(1, 'month').startOf('month'), moment().locale('fa').subtract(1, 'month').endOf('month')],
                 }
             });
 
