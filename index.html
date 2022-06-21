@@ -38,7 +38,8 @@
         $(function () {
             $('input[name="dates"]').daterangepicker({
                 showDropdowns: true,
-                minYear: 1395,
+                minYear: 2010,
+                maxYear: parseInt(moment().format('YYYY'), 10),
                 startDate: moment().startOf('day'),
                 endDate: moment().startOf('day').add(2, 'day'),
                 locale: {
@@ -57,7 +58,7 @@
                         "ج",
                         "ش"
                     ],
-                    "firstDay": 6
+                    "firstDay": 6,
                 },
                 ranges: {
                     'امروز': [moment(), moment()],
@@ -66,10 +67,11 @@
                     'سی روز گذشته': [moment().subtract(29, 'days'), moment()],
                     'این ماه': [moment().locale('fa').startOf('month').format('jYYYY/jMM/jD'), moment().locale('fa').endOf('month').format('jYYYY/jMM/jD')],
                     'ماه اخیر': [moment().locale('fa').subtract(1, 'month').startOf('month'), moment().locale('fa').subtract(1, 'month').endOf('month')],
-                }
-            });
-
-
+                },
+            },
+                function (start, end, label) {
+                    console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+                });
         })
     </script>
 </body>
