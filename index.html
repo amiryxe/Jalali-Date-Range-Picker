@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <input type="text" name="dates" value="01/01/2018 - 01/15/2018" />
+    <input type="text" name="dates" value="" />
 
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -36,6 +36,8 @@
 
     <script>
         $(function () {
+            moment.locale('fa-IR')
+
             $('input[name="dates"]').daterangepicker({
                 showDropdowns: true,
                 minYear: 2010,
@@ -43,7 +45,8 @@
                 startDate: moment().startOf('day'),
                 endDate: moment().startOf('day').add(2, 'day'),
                 locale: {
-                    format: 'jYYYY/jM/jD',
+                    format: 'jYYYY/jMM/jDD',
+                    direction: 'rtl',
                     "customRangeLabel": "سفارشی",
                     "applyLabel": "اعمال",
                     "cancelLabel": "انصراف",
@@ -58,20 +61,16 @@
                         "ج",
                         "ش"
                     ],
-                    "firstDay": 6,
                 },
                 ranges: {
                     'امروز': [moment(), moment()],
                     'دیروز': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
                     'هفت روز گذشته': [moment().subtract(6, 'days'), moment()],
                     'سی روز گذشته': [moment().subtract(29, 'days'), moment()],
-                    'این ماه': [moment().locale('fa').startOf('month').format('jYYYY/jMM/jD'), moment().locale('fa').endOf('month').format('jYYYY/jMM/jD')],
-                    'ماه اخیر': [moment().locale('fa').subtract(1, 'month').startOf('month'), moment().locale('fa').subtract(1, 'month').endOf('month')],
+                    'این ماه': [moment().startOf('month'), moment().endOf('month')],
+                    'ماه اخیر': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
                 },
-            },
-                function (start, end, label) {
-                    console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-                });
+            });
         })
     </script>
 </body>
